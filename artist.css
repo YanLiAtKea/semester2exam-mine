@@ -142,8 +142,11 @@ h1.name {
     .portrait {
         width: 48vw;
         height: 36vw;
-        overflow: hidden;
+        overflow-y: visible;
         position: relative;
+    }
+    .caption {
+        padding-left: 0;
     }
     img.play {
         width: 50px;
