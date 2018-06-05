@@ -248,8 +248,9 @@ span.share {
         margin-top: 15px;
     }
     div.text {
-        padding: 2em 0 0 0;
+        padding: 1em 0 0 0;
         width: auto;
+        max-height: 50vw;
     }
     :root {
         --unit: 2vw;
@@ -257,11 +258,9 @@ span.share {
     body#portfolio section {
         margin-bottom: 30px;
         width: auto;
-        height: auto;
-/*        height: calc(30 * var(--unit)); */
         padding-left: calc(3 * var(--unit));
-        grid-template-columns: calc(24* var(--unit)) calc(16 * var(--unit));
-        grid-template-rows: calc(18* var(--unit)) calc(3* var(--unit)) calc(3* var(--unit));
+        grid-template-columns: calc(24* var(--unit)) calc(17 * var(--unit));
+        grid-template-rows: minmax(calc(18* var(--unit)), 45vw) calc(3* var(--unit)) calc(3* var(--unit));
         grid-column-gap: calc(2 * var(--unit));
         grid-row-gap: calc(1 * var(--unit));
     }
