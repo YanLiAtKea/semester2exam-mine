@@ -13,7 +13,7 @@ if (fetching ==false){
     console.log("smth")
 loader.classList.add("hide");}
 }
-// get the language setting in the URL. these 2 are already set in main.js, so remove from here
+// get the language setting in the URL.
 let Urlpassed = new URLSearchParams(window.location.search);
 let languagePassed = Urlpassed.get("lang");
 // if there is no language argument in the URL, set it to english version
@@ -21,7 +21,7 @@ if(!languagePassed){
     languagePassed = "en";
 }
 // fetch data based on language
-defaultPath = 'http://designki.dk/CMS/wordpress/wp-json/wp/v2/artwork_' + languagePassed + '?_embed&order=asc&per_page=3&page=';
+defaultPath = 'https://onestepfurther.nu/cms/wp-json/wp/v2/artwork_' + languagePassed + '?_embed&order=asc&per_page=3&page=';
 
 fetchArt(defaultPath);
 
@@ -35,6 +35,7 @@ function showArts(arts){
     // the first time when no more data got fetched from backend, clear the interval of checking the bottom. no more data, no more need for checking
     if(!arts.length){
         clearInterval(checkInterval);
+        console.log('no more content to load');
     }
 
     arts.forEach((eachArt) => {
@@ -113,19 +114,39 @@ function showArts(arts){
         }
         clone.querySelector('.description p').textContent = eachArt.acf.technical_description;
         clone.querySelector('.concept p').innerHTML = eachArt.acf.concept;
+        // check to see if the large image is in horizontal or vertical format, need this to choose layout for all images
+        let largeImageOrientation = eachArt.acf["image-orientation"];
+        if(largeImageOrientation == "horizontal"){
+            clone.querySelector('div.img').classList.add('horizontal');
+        } else {
+            clone.querySelector('div.img').classList.add('vertical');
+        }
 
         wrapper.appendChild(clone);
 
+    // treat the black dots, which is linked to the first image
+    let blackDots = document.querySelectorAll('.slidedot0');
+    blackDots.forEach(getLargeImgSrc);
+    function getLargeImgSrc(b){
+        // get the original src of the large image, so that clicking on the black dot can always come back to the original image
+        let originalSrc = b.parentElement.parentElement.previousElementSibling.querySelector('.big-image img').getAttribute('src');
+        b.addEventListener('click', setSrc);
+        function setSrc(){
+            b.parentElement.parentElement.previousElementSibling.querySelector('.big-image img').setAttribute('src', originalSrc);
+        }
+    }
 
     // update image src when click "new dot"
-    let allDots = document.querySelectorAll('.slide-dot');
+    let allDots = document.querySelectorAll('.slide-dot-new.slide-dot');
     let srcArray2 = [];
     allDots.forEach(clickDot);
     function clickDot(d){
+        // listen to click on each dot
         d.addEventListener('click',updateSrc);
         function updateSrc(){
             let indexOfDot = d.className.slice(-1); // get the last digit, class was dynamicly added to each dot, so the last digit is controled as needed
             let allImgs = d.parentElement.parentElement.parentElement.previousElementSibling.querySelectorAll('img');
+
 
             if(allImgs[indexOfDot].getAttribute('src')){
                 srcArray2 = [];
@@ -135,8 +156,8 @@ function showArts(arts){
                 }
             }
             let newSrc = srcArray2[indexOfDot];
-            console.log(newSrc);
-            d.parentElement.parentElement.parentElement.previousElementSibling.querySelector('.big-image img').setAttribute('src', newSrc)
+            console.log(newSrc, indexOfDot);
+            d.parentElement.parentElement.parentElement.previousElementSibling.querySelector('.big-image img').setAttribute('src', newSrc);
         }
     }})
 
@@ -222,7 +243,7 @@ function loadMore() {
     if (bottomVisible() && lookingForData === false) {
         page++;
         // update path again, cuz clicking on a languange button can also trigger language change
-        defaultPath = 'http://designki.dk/CMS/wordpress/wp-json/wp/v2/artwork_' + languagePassed + '?_embed&order=asc&per_page=3&page=';
+        defaultPath = 'https://onestepfurther.nu/cms/wp-json/wp/v2/artwork_' + languagePassed + '?_embed&order=asc&per_page=3&page=';
         fetchArt(defaultPath);
     }
 }
@@ -246,14 +267,14 @@ function changeToEn(){
     languagePassed = "en";
     // remove exsisting section from previous fetch
     document.querySelectorAll('section').forEach(function(a){a.remove()});
-    let path = 'http://designki.dk/CMS/wordpress/wp-json/wp/v2/artwork_en?_embed&order=asc&per_page=3&page=';
+    let path = 'https://onestepfurther.nu/cms/wp-json/wp/v2/artwork_en?_embed&order=asc&per_page=3&page=';
     fetchArt(path);
 }
 function changeToIt(){
     languagePassed = "it";
     // remove exsisting section from previous fetch
     document.querySelectorAll('section').forEach(function(a){a.remove()});
-    let path = 'http://designki.dk/CMS/wordpress/wp-json/wp/v2/artwork_it?_embed&order=asc&per_page=3&page=';
+    let path = 'https://onestepfurther.nu/cms/wp-json/wp/v2/artwork_it?_embed&order=asc&per_page=3&page=';
     fetchArt(path);
 }
 
