@@ -99,8 +99,21 @@ span.share {
         margin-bottom: 50px;
     }
     div.img {
-        height: 75vw;
+        height: 100vw;
         overflow: hidden;
+    }
+    div.img.horizontal img.horizontal {
+        margin: 12.5vw 0;
+    }
+    div.img.vertical img.horizontal {
+        width: 100vw;
+        height: auto;
+        margin: 12.5vw 0;
+    }
+    div.img img.vertical {
+        width: 75vw;
+        height: 100vw;
+        margin: 0 auto 0 10vw;
     }
     div.text {
         width: 66vw;

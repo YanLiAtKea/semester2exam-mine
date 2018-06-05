@@ -74,11 +74,13 @@ function showArts(arts){
         clone.querySelector('.width').textContent = eachArt.acf.dimension_width;
         clone.querySelector('.big-image img').src = largeImagePath;
         clone.querySelector('.big-image img').alt = eachArt.acf.title_of_artwork;
+        clone.querySelector('.big-image img').classList.add(eachArt.acf["image-orientation"]);
         // image 2-6 are not required, so check if each of these exsist, great thumbnail only when exsist
         let thumbnailWrapper = clone.querySelector('.small-images');
         if(eachArt.acf.image2 !== false){
             clone.querySelector('.thumbnail:nth-of-type(1) img').src = eachArt.acf.image2.sizes.large;
             clone.querySelector('.thumbnail:nth-of-type(1) img').alt = eachArt.acf.title_of_artwork;
+            clone.querySelector('.thumbnail:nth-of-type(1) img').classList.add(eachArt.acf["image-orientation2"]);
             let newDot = document.createElement('div');
             newDot.innerHTML = "<div class='slide-dot slide-dot-new slidedot1'></div>";
             clone.querySelector('.only-next').append(newDot);
@@ -86,6 +88,7 @@ function showArts(arts){
         if(eachArt.acf.image3 !== false){
             clone.querySelector('.thumbnail:nth-of-type(2) img').src = eachArt.acf.image3.sizes.large;
             clone.querySelector('.thumbnail:nth-of-type(2) img').alt = eachArt.acf.title_of_artwork;
+            clone.querySelector('.thumbnail:nth-of-type(2) img').classList.add(eachArt.acf["image-orientation3"]);
             let newDot = document.createElement('div');
             newDot.innerHTML = "<div class='slide-dot slide-dot-new slidedot2'></div>";
             clone.querySelector('.only-next').append(newDot);
@@ -93,6 +96,7 @@ function showArts(arts){
         if(eachArt.acf.image4 !== false){
             clone.querySelector('.thumbnail:nth-of-type(3) img').src = eachArt.acf.image4.sizes.large;
             clone.querySelector('.thumbnail:nth-of-type(3) img').alt = eachArt.acf.title_of_artwork;
+            clone.querySelector('.thumbnail:nth-of-type(3) img').classList.add(eachArt.acf["image-orientation4"]);
             let newDot = document.createElement('div');
             newDot.innerHTML = "<div class='slide-dot slide-dot-new slidedot3'></div>";
             clone.querySelector('.only-next').append(newDot);
@@ -100,6 +104,7 @@ function showArts(arts){
         if(eachArt.acf.image5 !== false){
             clone.querySelector('.thumbnail:nth-of-type(4) img').src = eachArt.acf.image5.sizes.large;
             clone.querySelector('.thumbnail:nth-of-type(4) img').alt = eachArt.acf.title_of_artwork;
+            clone.querySelector('.thumbnail:nth-of-type(4) img').classList.add(eachArt.acf["image-orientation5"]);
             let newDot = document.createElement('div');
             newDot.innerHTML = "<div class='slide-dot slide-dot-new slidedot4'></div>";
             clone.querySelector('.only-next').append(newDot);
@@ -107,6 +112,7 @@ function showArts(arts){
         if(eachArt.acf.image6 !== false){
             clone.querySelector('.thumbnail:nth-of-type(5) img').src = eachArt.acf.image6.sizes.large;
             clone.querySelector('.thumbnail:nth-of-type(5) img').alt = eachArt.acf.title_of_artwork;
+            clone.querySelector('.thumbnail:nth-of-type(5) img').classList.add(eachArt.acf["image-orientation6"]);
             let newDot = document.createElement('div');
             newDot.innerHTML = "<div class='slide-dot slide-dot-new slidedot5'></div>";
             clone.querySelector('.only-next').append(newDot);
@@ -129,15 +135,19 @@ function showArts(arts){
     function getLargeImgSrc(b){
         // get the original src of the large image, so that clicking on the black dot can always come back to the original image
         let originalSrc = b.parentElement.parentElement.previousElementSibling.querySelector('.big-image img').getAttribute('src');
-        b.addEventListener('click', setSrc);
-        function setSrc(){
+        let originalOrientation = b.parentElement.parentElement.previousElementSibling.querySelector('.big-image img').className;
+        console.log(originalOrientation);
+        b.addEventListener('click', setSrcAndOri);
+        function setSrcAndOri(){
             b.parentElement.parentElement.previousElementSibling.querySelector('.big-image img').setAttribute('src', originalSrc);
+            b.parentElement.parentElement.previousElementSibling.querySelector('.big-image img').className = originalOrientation;
         }
     }
 
     // update image src when click "new dot"
     let allDots = document.querySelectorAll('.slide-dot-new.slide-dot');
     let srcArray2 = [];
+    let orientationArray = [];
     allDots.forEach(clickDot);
     function clickDot(d){
         // listen to click on each dot
@@ -146,16 +156,19 @@ function showArts(arts){
             let indexOfDot = d.className.slice(-1); // get the last digit, class was dynamicly added to each dot, so the last digit is controled as needed
             let allImgs = d.parentElement.parentElement.parentElement.previousElementSibling.querySelectorAll('img');
 
-
             if(allImgs[indexOfDot].getAttribute('src')){
                 srcArray2 = [];
+                orientationArray = [];
                 allImgs.forEach(pushSrc);
                 function pushSrc(img){
                     srcArray2.push(img.getAttribute('src'));
+                    orientationArray.push(img.className);
                 }
             }
+            console.log(orientationArray[indexOfDot]);
+            d.parentElement.parentElement.parentElement.previousElementSibling.className = "img " + orientationArray[indexOfDot];
+            d.parentElement.parentElement.parentElement.previousElementSibling.querySelector('.big-image img').className = orientationArray[indexOfDot];
             let newSrc = srcArray2[indexOfDot];
-            console.log(newSrc, indexOfDot);
             d.parentElement.parentElement.parentElement.previousElementSibling.querySelector('.big-image img').setAttribute('src', newSrc);
         }
     }})
