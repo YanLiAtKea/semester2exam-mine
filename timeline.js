@@ -12,16 +12,14 @@ let templateExp = document.querySelector('template.experiences').content;
 let templateExhi = document.querySelector('template.exhibition').content;
 let templatePress = document.querySelector('template.press').content;
 let main = document.querySelector('main');
-let expPathEn = 'https://onestepfurther.nu/cms/wp-json/wp/v2/experience_en?_embed';
-let expPathIt = 'https://onestepfurther.nu/cms/wp-json/wp/v2/experience_it?_embed';
-let exhiPathEn = 'https://onestepfurther.nu/cms/wp-json/wp/v2/exhibition_en?_embed';
-let exhiPathIt = 'https://onestepfurther.nu/cms/wp-json/wp/v2/exhibition_it?_embed';
-let pressPathEn = 'https://onestepfurther.nu/cms/wp-json/wp/v2/press_en?_embed';
-let pressPathIt = 'https://onestepfurther.nu/cms/wp-json/wp/v2/press_it?_embed';
-let lookingForData = false;
+let expPathEn = 'https://onestepfurther.nu/cms/wp-json/wp/v2/experience_en?_embed&per_page=50';
+let expPathIt = 'https://onestepfurther.nu/cms/wp-json/wp/v2/experience_it?_embed&per_page=50';
+let exhiPathEn = 'https://onestepfurther.nu/cms/wp-json/wp/v2/exhibition_en?_embed&per_page=50';
+let exhiPathIt = 'https://onestepfurther.nu/cms/wp-json/wp/v2/exhibition_it?_embed&per_page=50';
+let pressPathEn = 'https://onestepfurther.nu/cms/wp-json/wp/v2/press_en?_embed&per_page=50';
+let pressPathIt = 'https://onestepfurther.nu/cms/wp-json/wp/v2/press_it?_embed&per_page=50';
 let counter = 0
 
-/*REST API*/
 function fetchTimeline(exp, fnc) {
     fetching = true;
     lookingForData = true;
@@ -279,7 +277,7 @@ $('.itSet').on('click', () => {
 
 
 
-// get the language setting in the URL. these 2 are already set in main.js, so remove from here
+// get the language setting in the URL
 let Urlpassed = new URLSearchParams(window.location.search);
 let languagePassed = Urlpassed.get("lang");
 let typePassed = Urlpassed.get("type");
