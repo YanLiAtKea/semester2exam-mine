@@ -159,10 +159,13 @@ span.share {
         background: white;
         z-index: 30;
         width: 86vw;
-        height: 650px;
+        height: auto;
         margin: 0 7vw;
         position: fixed;
         opacity: 0;
+    }
+    input {
+        border: .5px solid var(--light-grey);
     }
     .inquire-form.show {
         animation: fadeIn .1s .1s ease-in forwards;
@@ -186,7 +189,7 @@ span.share {
     }
     .sign {
         width: 50%;
-        padding: 120px 50px;
+        padding: 120px 10px 120px 50px;
     }
     .quote {
         font-size: 23px;
