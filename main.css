@@ -212,7 +212,7 @@ footer img {
     width: 30px;
     margin: 0 7px;
     position: relative;
-    bottom: -7px;
+    bottom: -11px;
 }
 footer>div {
     width: 100vw;
@@ -227,8 +227,9 @@ footer>div {
     /* footer */
     footer {
         height: 70px;
-        position: absolute;
+        width: 570px;
         bottom: -100px;
+        margin: 0 calc(50vw - 250px);
     }
     .desktopFooter {
         display: inherit;
@@ -238,7 +239,7 @@ footer>div {
         display: inline-block;
         width: auto;
         text-align: left;
-        margin: 0 6.5vw;
+        margin: 0 70px 0 0;
     }
 }
 

@@ -140,9 +140,10 @@ h1.name {
         top: 12vw;
     }
     .portrait {
-        width: 52vw;
-        height: 39vw;
+        width: 48vw;
+        height: 36vw;
         overflow: hidden;
+        position: relative;
     }
     img.play {
         width: 50px;
@@ -151,7 +152,7 @@ h1.name {
         top: 13vw;
     }
     .stop {
-        right: calc(26vw - 260px);
+        right: 0;
         top: 0;
     }
     iframe {
@@ -160,7 +161,7 @@ h1.name {
         left: calc(26vw - 280px);
     }
     .bio {
-        width: 32vw;
+        width: 35vw;
         position: absolute;
         top: 0;
         right: 7vw;
@@ -170,7 +171,7 @@ h1.name {
         margin-left: 4vw;
         padding-left: 0;
         position: relative;
-        top: -19vw;
+        top: -17vw;
     }
     body#about footer {
         position: absolute;

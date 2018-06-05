@@ -166,6 +166,7 @@ span.share {
     }
     input {
         border: .5px solid var(--light-grey);
+        border-radius: 2px;
     }
     .inquire-form.show {
         animation: fadeIn .1s .1s ease-in forwards;
