@@ -136,7 +136,6 @@ function showArts(arts){
         // get the original src of the large image, so that clicking on the black dot can always come back to the original image
         let originalSrc = b.parentElement.parentElement.previousElementSibling.querySelector('.big-image img').getAttribute('src');
         let originalOrientation = b.parentElement.parentElement.previousElementSibling.querySelector('.big-image img').className;
-        console.log(originalOrientation);
         b.addEventListener('click', setSrcAndOri);
         function setSrcAndOri(){
             b.parentElement.parentElement.previousElementSibling.querySelector('.big-image img').setAttribute('src', originalSrc);
@@ -165,7 +164,6 @@ function showArts(arts){
                     orientationArray.push(img.className);
                 }
             }
-            console.log(orientationArray[indexOfDot]);
             d.parentElement.parentElement.parentElement.previousElementSibling.className = "img " + orientationArray[indexOfDot];
             d.parentElement.parentElement.parentElement.previousElementSibling.querySelector('.big-image img').className = orientationArray[indexOfDot];
             let newSrc = srcArray2[indexOfDot];
