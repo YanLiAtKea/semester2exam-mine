@@ -253,9 +253,9 @@ span.share {
         width: auto;
         height: auto;
 /*        height: calc(30 * var(--unit)); */
-        padding: 0 calc(3.5 * var(--unit));
+        padding-left: calc(3 * var(--unit));
         grid-template-columns: calc(24* var(--unit)) calc(16 * var(--unit));
-        grid-template-rows: calc(18* var(--unit)) calc(4* var(--unit)) calc(3* var(--unit));
+        grid-template-rows: calc(18* var(--unit)) calc(3* var(--unit)) calc(3* var(--unit));
         grid-column-gap: calc(2 * var(--unit));
         grid-row-gap: calc(1 * var(--unit));
     }
@@ -308,8 +308,6 @@ span.share {
         position: relative;
         top: -27.5%;  /* show the center of the image */
     }
-
-    /*******************************/
     div.img.vertical img.horizontal {
         margin: 0;
         width: 130%;
@@ -329,37 +327,32 @@ span.share {
         position: relative;
         top: -20%;
     }
-    /*******************************/
     div.thumbnail {
         overflow: hidden;
-    }
-    .fetched {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(11, 1fr);
     }
     .fetched .title {
         margin-top: 0;
     }
     .buttons {
-        margin-top: 15px;
+        position: absolute;
+        bottom: -55px;
     }
     .title {
-        grid-row: 1/3;
+        grid-row: 1/4;
     }
     .description {
-        grid-row: 3/5;
+        grid-row: 4/9;
         overflow-y: scroll;
         overflow-y: scroll;
     }
     .concept {
-        grid-row: 5/-1;
+        grid-row: 9/-1;
         overflow-y: scroll;
         cursor: s-resize;
     }
     .curve img {
-        width: 14%;
-        margin-left: 51%;
+        width: 10%;
+        margin-left: 62.5%;
     }
     .more {
         display: none;
@@ -385,7 +378,7 @@ span.share {
         margin-left: calc(50vw - 60vh);
         z-index: 4;
         overflow-y: scroll;
-        cursor: s-resize;
+        cursor: ns-resize;
     }
     .modal>span {
         position: absolute;
