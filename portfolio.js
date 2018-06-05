@@ -45,7 +45,7 @@ function showArts(arts){
         let thumNail3 = eachArt.acf.image4
         let thumNail4 = eachArt.acf.image5
         let thumNail5 = eachArt.acf.image6
-        clone.querySelector('.text a').href = "subpage.html?id=" + eachArt.id;
+        clone.querySelector('.text a').href = "subpage.html?lang=" + languagePassed + "&id=" + eachArt.id;
         // set which h3 and Inquire/share to use
         if(languagePassed == "en"){
             clone.querySelector('.description .eng').classList.remove('hide');
