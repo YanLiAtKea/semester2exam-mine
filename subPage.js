@@ -9,11 +9,19 @@ function notFetching(){
     }
 }
 
+
 let main = document.querySelector('main');
 let section = document.querySelector('section');
 // get the language setting in the URL.
 let Urlpassed = new URLSearchParams(window.location.search);
 let languagePassed = Urlpassed.get("lang");
+
+// back to list
+document.querySelector('.back').addEventListener('click', goBack);
+function goBack(){
+    let originalHref = document.querySelector('.back').parentElement.getAttribute('href');
+    document.querySelector('.back').parentElement.setAttribute('href', originalHref + "?lang=" + languagePassed);
+}
 
 // if there is no language argument in the URL, set it to english version
 if(!languagePassed){
@@ -21,10 +29,6 @@ if(!languagePassed){
 }
 let id= Urlpassed.get("id");
 let artPath = 'https://onestepfurther.nu/cms/wp-json/wp/v2/artwork_' + languagePassed + '/' + id + '?_embed';
-
-
-// post id is different in eng and ita version, since they are 2 seperate posts, so no way to switch between languages. had to hide the lang toggle button
-document.querySelector('span.lan').classList.add('hide');
 
 fetchArt(artPath);
 

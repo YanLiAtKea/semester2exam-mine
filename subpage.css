@@ -39,6 +39,17 @@ rect, polyline, path {
 body#subpage {
     margin: 0;
 }
+.back {
+    font-family: simplifica, sans-serif;
+    font-size: 50px;
+    position: relative;
+    top: 10px;
+    left: 5%;
+    cursor: pointer;
+}
+h3 {
+    font-size: 23px;
+}
 #subpage input {
     width: 100%;
 }
