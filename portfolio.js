@@ -299,5 +299,3 @@ function changeToIt(){
     let path = 'https://onestepfurther.nu/cms/wp-json/wp/v2/artwork_it?_embed&order=asc&per_page=3&page=';
     fetchArt(path);
 }
-
-
