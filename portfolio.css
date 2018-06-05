@@ -394,14 +394,14 @@ span.share {
         cursor: pointer;
     }
     .toLeft {
-        left: 50px;
+        left: 30px;
     }
     .toRight {
-        right: 50px;
+        right: 30px;
     }
     span.closeModal {
         top: 70px;
-        right: 50px;
+        right: 30px;
     }
     iframe {
         position: absolute;
