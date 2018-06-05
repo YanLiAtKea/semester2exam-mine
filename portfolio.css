@@ -248,7 +248,7 @@ span.share {
         margin-top: 15px;
     }
     div.text {
-        padding: 1em 0 0 0;
+        padding: 10px 0 0 0;
         width: auto;
         max-height: 50vw;
     }
@@ -337,6 +337,9 @@ span.share {
     }
     .fetched .title {
         margin-top: 0;
+    }
+    .dimention {
+        margin-bottom: 20px;
     }
     .buttons {
         position: absolute;
