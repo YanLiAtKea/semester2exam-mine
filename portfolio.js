@@ -199,7 +199,7 @@ function showArts(arts){
     document.querySelectorAll('div.img img').forEach(function(img){
         img.addEventListener('click', openModal);})
     function openModal(c){
-            let srcArray=[];
+        let srcArray=[];
 
         document.querySelector('.slideshow').classList.remove('hide');
         document.querySelector('.modal').classList.remove('hide');
@@ -222,27 +222,26 @@ function showArts(arts){
         for(let i=0; i<srcArray.length; i++){
             if(src == srcArray[i]){
                 document.querySelector('.img-in-slide-show').setAttribute('src', srcArray[i]);
-            }
-            let prev = document.querySelector('.toLeft');
-            let next = document.querySelector('.toRight');
-            prev.addEventListener('click', showPrev);
-            function showPrev(){
-                if(i>=1){
-                    i--;
-                } else {
-                    i = srcArray.length;
-                    i--;
+                let prev = document.querySelector('.toLeft');
+                let next = document.querySelector('.toRight');
+                prev.addEventListener('click', showPrev);
+                function showPrev(){
+                    if(i>=1){
+                        i--;
+                    } else {
+                        i = srcArray.length-1;
+                    }
+                    document.querySelector('.img-in-slide-show').setAttribute('src', srcArray[i])
                 }
-                document.querySelector('.img-in-slide-show').setAttribute('src', srcArray[i])
-            }
-            next.addEventListener('click', showNext);
-            function showNext(){
-                if(i<srcArray.length-1){
-                    i++;
-                } else {
-                    i = 0;
+                next.addEventListener('click', showNext);
+                function showNext(){
+                    if(i<srcArray.length-1){
+                        i++;
+                    } else {
+                        i=0;
+                    }
+                    document.querySelector('.img-in-slide-show').setAttribute('src', srcArray[i]);
                 }
-                document.querySelector('.img-in-slide-show').setAttribute('src', srcArray[i]);
             }
             let closeSlideshow = document.querySelector('.closeModal');
             closeSlideshow.addEventListener('click', clearModal);
