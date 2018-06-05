@@ -8,8 +8,7 @@ function notFetching(){
     //loader
 let loader = document.querySelector(".loader");
 if (fetching ==false){
-    console.log("smth")
-loader.classList.add("hide");}
+    loader.classList.add("hide");}
 }
 
 // get the language setting in the URL
@@ -20,7 +19,7 @@ if(!languagePassed || languagePassed == 'en'){
     languagePassed = "en";
 }
 // fetch data based on language setting in the url
-let defaultPath = 'http://designki.dk/CMS/wordpress/wp-json/wp/v2/about_yourself_' + languagePassed;
+let defaultPath = 'https://onestepfurther.nu/cms/wp-json/wp/v2/about_yourself_' + languagePassed;
 
 fetchInfo(defaultPath, fillInfo);
 
@@ -60,8 +59,8 @@ function hideIframe(){
 
 
 // used for clicking on language buttons
-let infoPathEn = 'http://designki.dk/CMS/wordpress/wp-json/wp/v2/about_yourself_en';
-let infoPathIt = 'http://designki.dk/CMS/wordpress/wp-json/wp/v2/about_yourself_it'
+let infoPathEn = 'https://onestepfurther.nu/cms/wp-json/wp/v2/about_yourself_en';
+let infoPathIt = 'https://onestepfurther.nu/cms/wp-json/wp/v2/about_yourself_it'
 
 function fillInfo(info){
 
