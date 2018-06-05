@@ -70,6 +70,7 @@ button.inquire {
     border: 1px solid var(--medium-grey);
     border-radius: 3px;
     font-size: 23px;
+    cursor: pointer;
 }
 .SoMeIcon {
     width: 50px;
@@ -224,6 +225,10 @@ span.share {
         margin-top: 30px;
         cursor: pointer;
     }
+    .curve img {
+        margin-left: 54%;
+    }
+
 }
 
 @media screen and (min-width: 1200px){
@@ -381,21 +386,22 @@ span.share {
         overflow-y: scroll;
         cursor: ns-resize;
     }
-    .modal>span {
-        position: absolute;
-        top: 25vw;
+    .slideshow>span {
+        position: fixed;
+        top: 52vh;
         font-size: 50px;
         font-family: simplifica, sans-serif;
+        cursor: pointer;
     }
     .toLeft {
-        left: 70px;
+        left: 50px;
     }
     .toRight {
-        right: 70px;
+        right: 50px;
     }
     span.closeModal {
-        top: 0px;
-        right: 70px;
+        top: 70px;
+        right: 50px;
     }
     iframe {
         position: absolute;
