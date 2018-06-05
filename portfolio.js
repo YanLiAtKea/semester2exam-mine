@@ -10,8 +10,7 @@ function notFetching(){
     //loader
 let loader = document.querySelector(".loader");
 if (fetching ==false){
-    console.log("smth")
-loader.classList.add("hide");}
+    loader.classList.add("hide");}
 }
 // get the language setting in the URL.
 let Urlpassed = new URLSearchParams(window.location.search);

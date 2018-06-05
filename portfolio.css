@@ -15,7 +15,6 @@ body#portfolio section {
 div.img {
     height: 75vw;
     overflow: hidden;
-    cursor: pointer;
 }
 div.text {
     height: 70px;
@@ -44,6 +43,7 @@ img.arrow {
 }
 body#portfolio section {
     display: grid;
+    grid-row-gap: 30px;
 }
 section img{
     width: 100%;
@@ -106,7 +106,7 @@ span.share {
         width: 66vw;
         height: auto;
         position: relative;
-        padding: 5vw 0 0 10vw;
+        padding: 1vw 0 0 10vw;
     }
     .fetched>* {
         margin-top: 1em;
@@ -210,6 +210,7 @@ span.share {
     div.img {
         height: auto;
         overflow: auto;
+        cursor: pointer;
     }
     .title {
         width: auto;
