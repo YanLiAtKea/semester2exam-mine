@@ -129,6 +129,18 @@ function showArts(arts){
 
         wrapper.appendChild(clone);
 
+    // clicked dot turns black
+        let allDots = document.querySelectorAll('.slide-dot');
+        allDots.forEach(click);
+        function click(a){
+            a.addEventListener('click', clickedDot);
+            function clickedDot(){
+                let siblingDots = a.parentElement.parentElement.querySelectorAll('.slide-dot');
+                siblingDots.forEach(function(e){e.style.background = "var(--light-grey)"})
+                a.style.background = "var(--dark-grey)";
+            }
+        }
+
     // treat the black dots, which is linked to the first image
     let blackDots = document.querySelectorAll('.slidedot0');
     blackDots.forEach(getLargeImgSrc);
@@ -144,10 +156,10 @@ function showArts(arts){
     }
 
     // update image src when click "new dot"
-    let allDots = document.querySelectorAll('.slide-dot-new.slide-dot');
+    let allNewDots = document.querySelectorAll('.slide-dot-new.slide-dot');
     let srcArray2 = [];
     let orientationArray = [];
-    allDots.forEach(clickDot);
+    allNewDots.forEach(clickDot);
     function clickDot(d){
         // listen to click on each dot
         d.addEventListener('click',updateSrc);

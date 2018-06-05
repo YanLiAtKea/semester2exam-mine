@@ -9,12 +9,15 @@ body#portfolio {
 }
 body#portfolio section {
     width: 100vw;
-    height: 115vw;
+    height: auto;
     overflow: hidden;
 }
 div.img {
     height: 75vw;
     overflow: hidden;
+}
+div.img.vertical {
+    height: 130vw;
 }
 div.text {
     height: 70px;
@@ -25,7 +28,7 @@ div.more {
     width: 20vw;
     position: absolute;
     right: 0;
-    top: 10px;
+    top: 16px;
     z-index: 10;
 }
 div.more span {
@@ -102,6 +105,9 @@ span.share {
         height: 100vw;
         overflow: hidden;
     }
+    div.img.vertical {
+        height: 100vw;
+    }
     div.img.horizontal img.horizontal {
         margin: 12.5vw 0;
     }
@@ -116,7 +122,7 @@ span.share {
         margin: 0 auto 0 12.5vw;
     }
     div.text {
-        width: 66vw;
+        width: 68vw;
         height: auto;
         position: relative;
         padding: 1vw 0 0 12.5vw;
