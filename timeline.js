@@ -1,13 +1,13 @@
 let fetching;
 
 function notFetching(){
-    fetching=false
+    fetching = false;
     //loader
-let loader = document.querySelector(".loader");
-if (fetching ==false){
-    loader.classList.add("hide");}
+    let loader = document.querySelector(".loader");
+    if (fetching == false){
+        loader.classList.add("hide");
+    }
 }
-
 
 let templateExp = document.querySelector('template.experiences').content;
 let templateExhi = document.querySelector('template.exhibition').content;
@@ -21,28 +21,81 @@ let pressPathEn = 'https://onestepfurther.nu/cms/wp-json/wp/v2/press_en?_embed&p
 let pressPathIt = 'https://onestepfurther.nu/cms/wp-json/wp/v2/press_it?_embed&per_page=50';
 let counter = 0
 
-function fetchTimeline(exp, fnc) {
-    fetching = true;
-    lookingForData = true;
-    fetch(exp).then(e => e.json()).then(fnc)
+// get the language setting in the URL
+//let Urlpassed = new URLSearchParams(window.location.search);
+//let languagePassed = Urlpassed.get("lang");
+
+// get type passed in the URL
+let typePassed = Urlpassed.get("type");
+if(typePassed == "experience" && languagePassed == 'en'){
+    fetchTimeline(expPathEn, showExp);
+    fetchTimeline(exhiPathEn, showExhi)
+    fetchTimeline(pressPathEn, showPress);
+    showUnderlingExp();
+    showOnlyExp();
+    setTimeout(filterOnlyExp, 2000);
 }
-/*experience*/
+if(typePassed == "experience" && languagePassed == "it"){
+    fetchTimeline(expPathIt, showExp);
+    fetchTimeline(exhiPathIt, showExhi)
+    fetchTimeline(pressPathIt, showPress);
+    showUnderlingExp();
+    showOnlyExp();
+    setTimeout(filterOnlyExp, 2000);
+}
+if(typePassed == "exhibition" && languagePassed == "en"){
+    fetchTimeline(expPathEn, showExp);
+    fetchTimeline(exhiPathEn, showExhi)
+    fetchTimeline(pressPathEn, showPress);
+    showOnlyExh();
+    setTimeout(filterOnlyExhi, 2000);
+}
+if(typePassed == "exhibition" && languagePassed == "it"){
+    fetchTimeline(expPathIt, showExp);
+    fetchTimeline(exhiPathIt, showExhi)
+    fetchTimeline(pressPathIt, showPress);
+    showOnlyExp();
+    showUnderlingExhi();
+    setTimeout(filterOnlyExhi, 2000);
+}
+if(typePassed == "press" && languagePassed == "en"){
+    fetchTimeline(expPathEn, showExp);
+    fetchTimeline(exhiPathEn, showExhi)
+    fetchTimeline(pressPathEn, showPress);
+    showOnlyPress();
+    showUnderlingPress();
+    setTimeout(filterOnlyPress, 2000);
+}
+if(typePassed == "press" && languagePassed == "it"){
+    fetchTimeline(expPathIt, showExp);
+    fetchTimeline(exhiPathIt, showExhi)
+    fetchTimeline(pressPathIt, showPress);
+    showOnlyPress();
+    showUnderlingPress();
+    setTimeout(filterOnlyPress, 2000);
+}
+if(!typePassed && languagePassed == "en"){
+    fetchTimeline(exhiPathEn, showExp);
+    fetchTimeline(exhiPathEn, showExhi);
+    fetchTimeline(pressPathEn, showPress);
+}
+if(!typePassed && languagePassed == "it"){
+    fetchTimeline(exhiPathIt, showExp);
+    fetchTimeline(exhiPathIt, showExhi);
+    fetchTimeline(pressPathIt, showPress);
+}
+
+
+function fetchTimeline(path, show) {
+    fetching = true;
+    fetch(path).then(e => e.json()).then(show)
+}
 
 function showExp(exp) {
     exp.forEach((e) => {
-
         let clone = templateExp.cloneNode(true);
         counter++;
-        function isOdd(num) {
-            return num % 2;
-        }
-
-        if (isOdd(counter)) {
-            clone.querySelector('article').classList.add('needSort')
-        } else {
-            clone.querySelector('article').classList.add('needSort')
-        }
-
+        clone.querySelector('article').classList.add('needSort')
         clone.querySelector('article').classList.add('experience');
         clone.querySelector('article').setAttribute('date-string', e.acf.start_date);
         let startDate = e.acf.start_date.substring(6, 8) + " / " + e.acf.start_date.substring(4, 6) + " / " + e.acf.start_date.substring(0, 4)
@@ -143,12 +196,6 @@ function showPress(press) {
     })
 }
 
-fetchTimeline(expPathEn, showExp)
-fetchTimeline(exhiPathEn, showExhi)
-fetchTimeline(pressPathEn, showPress)
-setTimeout(sortAll, 2000);
-
-
 // event type filters
 document.querySelector('.expFilter').addEventListener('click', showOnlyExp);
 function showOnlyExp(){
@@ -175,6 +222,7 @@ function showAll(){
     document.querySelectorAll('.exhibition').forEach(e => e.classList.remove('hide'));
     document.querySelectorAll('.experience').forEach(e => e.classList.remove('hide'));
 }
+
 // sort all input by date
 function sortAll(){
     let wrapper = document.querySelector('main.timeline');
@@ -229,23 +277,6 @@ $('.itSet').on('click', () => {
 });
 
 
-
-// get the language setting in the URL
-//let Urlpassed = new URLSearchParams(window.location.search);
-//let languagePassed = Urlpassed.get("lang");
-let typePassed = Urlpassed.get("type");
-if(typePassed == "experience"){
-    showUnderlingExp();
-    setTimeout(filterOnlyExp, 2000);
-}
-if(typePassed == "exhibition"){
-    showUnderlingExhi();
-    setTimeout(filterOnlyExhi, 2000);
-}
-if(typePassed == "press"){
-    showUnderlingPress();
-    setTimeout(filterOnlyPress, 2000);
-}
 
 function showUnderlingExp(){
     document.querySelector('.allFilter').classList.remove('active');
