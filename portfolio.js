@@ -8,9 +8,9 @@ let fetching;
 function notFetching(){
     fetching=false
     //loader
-let loader = document.querySelector(".loader");
-if (fetching ==false){
-    loader.classList.add("hide");}
+    let loader = document.querySelector(".loader");
+    if (fetching ==false){
+        loader.classList.add("hide");}
 }
 // get the language setting in the URL.
 //let Urlpassed = new URLSearchParams(window.location.search);
@@ -254,7 +254,9 @@ function showArts(arts){
         }
     }
     lookingForData = false;
-    notFetching()
+    notFetching();
+    document.querySelector('body').style.height = "auto";
+    document.querySelector('body').style.background = "linear-gradient(to bottom, #ffffff 0%, #f0f2f5 30%, #ffffff 100%)";
 }
 
 function loadMore() {
@@ -282,6 +284,7 @@ function bottomVisible() {
 document.querySelector('.enSet').addEventListener('click', changeToEn);
 document.querySelector('.itSet').addEventListener('click', changeToIt);
 function changeToEn(){
+    document.querySelector('body').style.height = "100vh"; // in order to avoid multiple gradient
     languagePassed = "en";
     // remove exsisting section from previous fetch
     document.querySelectorAll('section').forEach(function(a){a.remove()});
@@ -289,6 +292,7 @@ function changeToEn(){
     fetchArt(path);
 }
 function changeToIt(){
+    document.querySelector('body').style.height = "100vh"; // in order to avoid multiple gradient
     languagePassed = "it";
     // remove exsisting section from previous fetch
     document.querySelectorAll('section').forEach(function(a){a.remove()});
