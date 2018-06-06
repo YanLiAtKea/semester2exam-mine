@@ -37,7 +37,7 @@
 .loader{
     z-index: 5;
     position: relative;
-    background-color: white;
+    background-color: linear-gradient(to bottom, #ffffff 0%, #f0f2f5 30%, #ffffff 100%);
     width: 100vw;
     height: 100vh;
 }
@@ -73,9 +73,10 @@ rect, polyline, path {
 
 /* basic elements */
 body:not(#homepage) {
-    background: white;
+    background: linear-gradient(to bottom, #ffffff 0%, #f0f2f5 30%, #ffffff 100%);
     max-width: 100%;
     position: relative;
+    height: 100%;
 }
 a {
     text-decoration: none;
