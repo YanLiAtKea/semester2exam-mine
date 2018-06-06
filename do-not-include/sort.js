@@ -1,5 +1,3 @@
-
-
 function sortAll(){
     let wrapper = document.querySelector('main.timeline');
     let neetSortS = document.querySelectorAll('.needSort');

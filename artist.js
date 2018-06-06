@@ -1,5 +1,3 @@
-
-
 let main = document.querySelector('main');
 let fetching;
 
@@ -12,8 +10,8 @@ if (fetching ==false){
 }
 
 // get the language setting in the URL
-let Urlpassed = new URLSearchParams(window.location.search);
-let languagePassed = Urlpassed.get("lang");
+//let Urlpassed = new URLSearchParams(window.location.search);
+//let languagePassed = Urlpassed.get("lang");
 // if there is no language argument in the URL, set it to english version
 if(!languagePassed || languagePassed == 'en'){
     languagePassed = "en";

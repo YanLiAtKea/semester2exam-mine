@@ -5,9 +5,10 @@ function notFetching(){
     //loader
 let loader = document.querySelector(".loader");
 if (fetching ==false){
-    console.log("smth")
-loader.classList.add("hide");}
+    loader.classList.add("hide");}
 }
+
+
 let templateExp = document.querySelector('template.experiences').content;
 let templateExhi = document.querySelector('template.exhibition').content;
 let templatePress = document.querySelector('template.press').content;
@@ -31,27 +32,21 @@ function showExp(exp) {
     exp.forEach((e) => {
 
         let clone = templateExp.cloneNode(true);
-        counter++
-
-        /*the isOdd function I have found on stackoverflow.(https://stackoverflow.com/questions/5016313/how-to-determine-if-a-number-is-odd-in-javascript) It returns a value of 0 or 1 which can be also read as true or false.*/
-
+        counter++;
         function isOdd(num) {
             return num % 2;
         }
 
         if (isOdd(counter)) {
-//            clone.querySelector('article').classList.add('right')
             clone.querySelector('article').classList.add('needSort')
         } else {
-//            clone.querySelector('article').classList.add('left')
             clone.querySelector('article').classList.add('needSort')
         }
 
         clone.querySelector('article').classList.add('experience');
         clone.querySelector('article').setAttribute('date-string', e.acf.start_date);
         let startDate = e.acf.start_date.substring(6, 8) + " / " + e.acf.start_date.substring(4, 6) + " / " + e.acf.start_date.substring(0, 4)
-        /*this function I took and slightly modified from stackoverflow https://stackoverflow.com/questions/1531093/how-do-i-get-the-current-date-in-javascript. It's functionality is to link to a JS built in object and return the current date*/
-        /*define today*/
+        // get today
         var today = new Date();
         var dd = today.getDate();
         var mm = today.getMonth() + 1; //January is 0!
@@ -75,88 +70,57 @@ function showExp(exp) {
     notFetching()
 }
 
-/*exhibition*/
-
 function showExhi(exhi) {
     exhi.forEach((e) => {
-
         let clone = templateExhi.cloneNode(true);
         counter++
-
-        /*the isOdd function I have found on stackoverflow.(https://stackoverflow.com/questions/5016313/how-to-determine-if-a-number-is-odd-in-javascript) It returns a value of 0 or 1 which can be also read as true or false.*/
-
         function isOdd(num) {
             return num % 2;
         }
-
         if (isOdd(counter)) {
-//            clone.querySelector('article').classList.add('right')
             clone.querySelector('article').classList.add('needSort')
 
         } else {
-//            clone.querySelector('article').classList.add('left')
             clone.querySelector('article').classList.add('needSort')
 
         }
         clone.querySelector('article').classList.add('exhibition');
         clone.querySelector('article').setAttribute('date-string', e.acf.start_date);
-
-
-
         let startDate = e.acf.start_date.substring(6, 8) + " / " + e.acf.start_date.substring(4, 6) + " / " + e.acf.start_date.substring(0, 4)
-
         /*define today*/
         let today = new Date();
         let dd = today.getDate();
         let mm = today.getMonth() + 1;
         let yyyy = today.getFullYear();
-
-
         today = yyyy + mm + dd
-
         let endDate = e.acf.end_date.substring(6, 8) + " / " + e.acf.end_date.substring(4, 6) + " / " + e.acf.end_date.substring(0, 4)
-
         clone.querySelector('.startDate').textContent = startDate
         clone.querySelector('.endDate').textContent = endDate
-
-
         clone.querySelector('.title').innerHTML = e.acf.gallery_name;
         clone.querySelector('.address').innerHTML = e.acf.address_of_exhibition
 
-        console.log(e.acf.address_of_exhibition)
-
         if (e.link_of_exhibition == undefined) {
-            console.log('im not defined')
             clone.querySelector('.linkIcon').classList.add('hide')
         } else {
             clone.querySelector('.link').innerHTML = e.acf.link_of_exhibition;
             clone.querySelector('.linkIcon').classList.remove('hide');
         }
-
-
         main.appendChild(clone)
-
     })
 }
 
-/*press*/
 function showPress(press) {
     press.forEach((e) => {
 
         let clone = templatePress.cloneNode(true);
         counter++
-
-        /*the isOdd function I have found on stackoverflow.(https://stackoverflow.com/questions/5016313/how-to-determine-if-a-number-is-odd-in-javascript) It returns a value of 0 or 1 which can be also read as true or false.*/
-
         function isOdd(num) {
             return num % 2;
         }
         if (isOdd(counter)) {
-//            clone.querySelector('article').classList.add('right')
             clone.querySelector('article').classList.add('needSort')
 
         } else {
-//            clone.querySelector('article').classList.add('left')
             clone.querySelector('article').classList.add('needSort')
         }
         clone.querySelector('article').classList.add('press');
@@ -170,23 +134,14 @@ function showPress(press) {
         clone.querySelector('.titleArticle').innerHTML = e.acf.title_of_article
 
         if (e.link_of_exhibition == undefined) {
-            console.log('im not defined')
             clone.querySelector('.linkIcon').classList.add('hide')
         } else {
             clone.querySelector('.link').innerHTML = e.link_of_exhibition;
             clone.querySelector('.linkIcon').classList.remove('hide');
         }
-
-
-
         main.appendChild(clone)
-        console.log($(window).height)
-
-        $('.line').css('height', $(window).height)
-
     })
 }
-
 
 fetchTimeline(expPathEn, showExp)
 fetchTimeline(exhiPathEn, showExhi)
@@ -220,9 +175,7 @@ function showAll(){
     document.querySelectorAll('.exhibition').forEach(e => e.classList.remove('hide'));
     document.querySelectorAll('.experience').forEach(e => e.classList.remove('hide'));
 }
-
-
-
+// sort all input by date
 function sortAll(){
     let wrapper = document.querySelector('main.timeline');
     let neetSortS = document.querySelectorAll('.needSort');
@@ -278,8 +231,8 @@ $('.itSet').on('click', () => {
 
 
 // get the language setting in the URL
-let Urlpassed = new URLSearchParams(window.location.search);
-let languagePassed = Urlpassed.get("lang");
+//let Urlpassed = new URLSearchParams(window.location.search);
+//let languagePassed = Urlpassed.get("lang");
 let typePassed = Urlpassed.get("type");
 if(typePassed == "experience"){
     showUnderlingExp();

@@ -1,12 +1,3 @@
-/*this javascript controls what s universal between pages like the burger menu , switching between languages etc.*/
-
-/* text in different languages */
-
-let itaText = document.querySelectorAll('.ita')
-let engText = document.querySelectorAll('.eng')
-let itaSample = document.querySelector('.ita')
-let engSample = document.querySelector('.eng')
-
 // get hrefs of all the buttons and append the language to them, either by clicking on language button or by getting the language from url
 let allNavButtons = document.querySelectorAll('header a[id]');
 allNavButtons.forEach(updateHref);
@@ -39,26 +30,20 @@ function updateHref(a){
         // set en span as active, show which lang is acive already after loading the page
         document.querySelector('.enSet').className = "enSet lanactive";
         document.querySelector('.itSet').className = "itSet";
+        showEn();
         // pass language argument to the href. forEach loop to achieve the same effect see below
         newHref = oldHref + '?lang=en';
     } else if (languageSet == "it" || languageChosen == "it"){
         // set it span as active
         document.querySelector('.enSet').className = "enSet";
         document.querySelector('.itSet').className = "itSet lanactive";
-        //    setLanguage();
-        itaText.forEach((ita) => {
-            ita.classList.toggle('hide')
-        })
-        engText.forEach((eng) => {
-            eng.classList.toggle('hide')
-        });
+        showIt();
         newHref = oldHref + '?lang=it';
     }
     a.setAttribute('href', newHref);
 }
 
-
-// get event type and pass it to the href
+/////////// get event type and pass it to the href
 let types = document.querySelectorAll('.subMenu>a');
 types[0].addEventListener('click', types[0].setAttribute('type', 'experience'));
 types[1].addEventListener('click', types[1].setAttribute('type', 'exhibition'));
@@ -72,34 +57,4 @@ function chooseType(t){
         newHref = oldHref + '&type=' + t.getAttribute('type');
         t.setAttribute('href', newHref);
     }
-}
-
-
-//set language with clicking on the languaga buttons
-$('.itSet').on('click', setLanguage)
-$('.enSet').on('click', setLanguage)
-function setLanguage(e) {
-    /*with this if statement I check if what I clicked was the italian button and the italian version is NOT already displayed, or if the english button was pressed and the english version is NOT already displayed, then execute my code, which toggles the class hide*/
-    if (itaSample.classList.contains('hide') && e.target.classList.contains('itSet') || engSample.classList.contains('hide') && e.target.classList.contains('enSet')) {
-        itaText.forEach((ita) => {
-            ita.classList.toggle('hide')
-        })
-        engText.forEach((eng) => {
-            eng.classList.toggle('hide')
-        });
-    }
-}
-
-/*burger menu */
-$('.burger').on('click', () => {
-    $('.navMenu').toggleClass('openNav');
-    $('.navMenu').toggleClass('closeNav');
-})
-function openSubMenu() {
-    $('.subMenu').addClass('openMe');
-    $('.subMenu').removeClass('closeMe');
-}
-function closeSubMenu(){
-    $('.subMenu').addClass('closeMe');
-    $('.subMenu').removeClass('openMe');
 }

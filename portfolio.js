@@ -13,12 +13,13 @@ if (fetching ==false){
     loader.classList.add("hide");}
 }
 // get the language setting in the URL.
-let Urlpassed = new URLSearchParams(window.location.search);
-let languagePassed = Urlpassed.get("lang");
+//let Urlpassed = new URLSearchParams(window.location.search);
+//let languagePassed = Urlpassed.get("lang");
 // if there is no language argument in the URL, set it to english version
-if(!languagePassed){
-    languagePassed = "en";
-}
+//if(!languagePassed){
+//    languagePassed = "en";
+//}
+
 // fetch data based on language
 defaultPath = 'https://onestepfurther.nu/cms/wp-json/wp/v2/artwork_' + languagePassed + '?_embed&order=asc&per_page=3&page=';
 
@@ -256,10 +257,6 @@ function showArts(arts){
     notFetching()
 }
 
-
-
-
-
 function loadMore() {
     if (bottomVisible() && lookingForData === false) {
         page++;
@@ -281,7 +278,7 @@ function bottomVisible() {
 }
 
 
-// language setting
+// click on language button and re-fetch content in that language
 document.querySelector('.enSet').addEventListener('click', changeToEn);
 document.querySelector('.itSet').addEventListener('click', changeToIt);
 function changeToEn(){
