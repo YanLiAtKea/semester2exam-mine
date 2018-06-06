@@ -374,15 +374,15 @@ span.share {
         z-index: 3;
     }
     .inquire-form {
-        height: 80vh;
-        width: 90vw;
-        right: 40px;
-        margin: 0 5vw;
-        padding: 0 3vw;
+        height: 83vh;
+        width: 100vw;
+        margin: 0;
+        padding: 0 8vw;
         overflow: scroll;
     }
     .form {
-        width: 46%;
+        width: 40%;
+        right: 8vw;
     }
     /* slideshow */
     .slideshow {
