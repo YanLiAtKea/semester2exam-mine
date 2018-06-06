@@ -7,9 +7,18 @@ let engText = document.querySelectorAll('.eng')
 let itaSample = document.querySelector('.ita')
 let engSample = document.querySelector('.eng')
 
-
-
-// get the navigation buttons, need them later to get get original href, so that the language setting can be passed to these
+// get hrefs of all the buttons and append the language to them
+let allNavButtons = document.querySelectorAll('header a[id]');
+allNavButtons.forEach(getHref);
+function getHref(a){
+    let oldHref = a.getAttribute('href');
+    if(oldHref.indexOf('lang')>-1){
+        let newHref = oldHref.slice(0, -2) + languageChosen;
+    } else {
+        let newHref = oldHref + '?lang=' + languageChosen;
+    }
+}
+/*
 let naviHome = document.querySelector('#navHome');
 let naviArtist = document.querySelector('#navArtist');
 let naviPortforlio = document.querySelector('#navArt');
@@ -19,12 +28,8 @@ let naviExhibition = document.querySelector('#navExhibition');
 let naviPress = document.querySelector('#navPress');
 let naviAll = document.querySelector('#navAll');
 
-$('.itSet').on('click', setLanguage)
-$('.enSet').on('click', setLanguage)
-
-
 // update url with click on language button. This is the most detailed code, no loop, no advance
-
+*/
 // get the language buttons
 let langButtons = document.querySelectorAll('.lan button');
 // for each language button, use the same function
@@ -53,7 +58,7 @@ function languageChosen(l){
         let newExhibitionLink;
         let newPressLink;
         let newAllLink;
-        // chech to see if language setting already exist, if yes, overwrite with new language setting, if no, add language setting
+        // check to see if language setting already exist, if yes, overwrite with new language setting, if no, add language setting
         if(artistLink.indexOf('lang=')<0){ // chech just one is enough, since all of the href get updated at the same time, one has it, all have it.
             newHomeLink = homeLink + "?lang=" + languageChosen;
             newArtistLink = artistLink + "?lang=" + languageChosen;
@@ -90,11 +95,10 @@ function languageChosen(l){
 let originalUrl = new URLSearchParams(window.location.search);
 let languageSet = originalUrl.get("lang");
 if(!languageSet || languageSet == "en" || languageChosen == "en"){
-    // set en span as active
+    // set en span as active, show which lang is acive already after loading the page
     document.querySelector('.enSet').className = "enSet lanactive";
     document.querySelector('.itSet').className = "itSet";
-//    setLanguage();
-
+    // pass language argument to the href. forEach loop to achieve the same effect see below
     naviHome.setAttribute('href', 'index.html?lang=en');
     naviArtist.setAttribute('href', 'about.html?lang=en');
     naviPortforlio.setAttribute('href', 'portfolio.html?lang=en');
@@ -116,9 +120,6 @@ if(!languageSet || languageSet == "en" || languageChosen == "en"){
         eng.classList.toggle('hide')
     });
 
-//    $('.itSet').toggleClass('lanactive');
-//    $('.enSet').toggleClass('lanactive');
-
     naviHome.setAttribute('href', 'index.html?lang=it');
     naviArtist.setAttribute('href', 'about.html?lang=it');
     naviPortforlio.setAttribute('href', 'portfolio.html?lang=it');
@@ -128,29 +129,9 @@ if(!languageSet || languageSet == "en" || languageChosen == "en"){
     naviPress.setAttribute('href', 'timeline.html?lang=it');
     naviAll.setAttribute('href', 'timeline.html?lang=it');
 }
-console.log(document.querySelector('.lanactive'));
 
 
-function setLanguage(e) {
-
-
-    /*with this if statement I check if what I clicked was the italian button and the italian version is NOT already displayed, or if the english button was pressed and the english version is NOT already displayed, then execute my code, which toggles the class hide*/
-
-    if (itaSample.classList.contains('hide') && e.target.classList.contains('itSet') || engSample.classList.contains('hide') && e.target.classList.contains('enSet')) {
-        itaText.forEach((ita) => {
-            ita.classList.toggle('hide')
-        })
-        engText.forEach((eng) => {
-            eng.classList.toggle('hide')
-        });
-
-//        $('.itSet').toggleClass('lanactive');
-//        $('.enSet').toggleClass('lanactive');
-    }
-
-}
-
-// get event type
+// get event type and pass it to the href
 let types = document.querySelectorAll('.subMenu>a');
 types[0].addEventListener('click', types[0].setAttribute('type', 'experience'));
 types[1].addEventListener('click', types[1].setAttribute('type', 'exhibition'));
@@ -165,24 +146,32 @@ function chooseType(t){
         t.setAttribute('href', newHref);
     }
 }
-/*burger menu */
 
+
+//set language with clicking on the languaga buttons
+$('.itSet').on('click', setLanguage)
+$('.enSet').on('click', setLanguage)
+function setLanguage(e) {
+    /*with this if statement I check if what I clicked was the italian button and the italian version is NOT already displayed, or if the english button was pressed and the english version is NOT already displayed, then execute my code, which toggles the class hide*/
+    if (itaSample.classList.contains('hide') && e.target.classList.contains('itSet') || engSample.classList.contains('hide') && e.target.classList.contains('enSet')) {
+        itaText.forEach((ita) => {
+            ita.classList.toggle('hide')
+        })
+        engText.forEach((eng) => {
+            eng.classList.toggle('hide')
+        });
+    }
+}
+
+/*burger menu */
 $('.burger').on('click', () => {
     $('.navMenu').toggleClass('openNav');
     $('.navMenu').toggleClass('closeNav');
 })
-
-//$('.timelineNav').on('mouseenter', openSubMenu);
-//$('.subMenu').on('mouseleave', closeSubMenu);
-
-
-
 function openSubMenu() {
     $('.subMenu').addClass('openMe');
     $('.subMenu').removeClass('closeMe');
-
 }
-
 function closeSubMenu(){
     $('.subMenu').addClass('closeMe');
     $('.subMenu').removeClass('openMe');
