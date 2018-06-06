@@ -375,7 +375,14 @@ span.share {
     }
     .inquire-form {
         height: 80vh;
+        width: 90vw;
+        right: 40px;
+        margin: 0 5vw;
+        padding: 0 3vw;
         overflow: scroll;
+    }
+    .form {
+        width: 46%;
     }
     /* slideshow */
     .slideshow {
