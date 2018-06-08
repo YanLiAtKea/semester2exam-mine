@@ -75,12 +75,12 @@ if(typePassed == "press" && languagePassed == "it"){
     setTimeout(filterOnlyPress, 2000);
 }
 if(!typePassed && languagePassed == "en"){
-    fetchTimeline(exhiPathEn, showExp);
+    fetchTimeline(expPathEn, showExp);
     fetchTimeline(exhiPathEn, showExhi);
     fetchTimeline(pressPathEn, showPress);
 }
 if(!typePassed && languagePassed == "it"){
-    fetchTimeline(exhiPathIt, showExp);
+    fetchTimeline(expPathIt, showExp);
     fetchTimeline(exhiPathIt, showExhi);
     fetchTimeline(pressPathIt, showPress);
 }
@@ -115,6 +115,7 @@ function showExp(exp) {
             clone.querySelector('.startDate').style.cssText = "display:none;"
             clone.querySelector('.endDate').style.cssText = "display:none;"
         }
+        console.log(e.acf['your_role_at_activity']);
         clone.querySelector('.job').innerHTML = e.acf.your_role_at_activity
         clone.querySelector('.collaborators').innerHTML = e.acf.what_did_you_do;
         clone.querySelector('.description').innerHTML = e.acf.place
